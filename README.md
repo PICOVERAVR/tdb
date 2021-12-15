@@ -1,13 +1,13 @@
 # tdb
 
-A tiny debugger. Requires x64 Linux and objdump to run.
+A tiny debugger written a long time ago. Requires x64 Linux and objdump to run.
 
 Source level debugging isn't really supported, but assembly level debugging is.
 
 ## Commands
  - `d`: disassemble the current executable
  - `s`: step one instruction
- - `c`: continue to next breakpoint
+ - `c`: start/continue execution to next breakpoint
  - `b <addr>`: break at \<addr\>
  - `l`: list all breakpoints
  - `i`: dump RIP, RBP, RSP

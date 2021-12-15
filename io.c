@@ -22,9 +22,9 @@ void print_breakpoints(uint64_t *break_list) {
     for (int i = 0; i < NUM_BREAKPOINTS; i++) {
         if (break_list[i] == 0) {
             return;
-        }   
+        }
         printf("breakpoint %d at address %#lx\n", i, break_list[i]);
-    }   
+    }
 }
 
 void check_clear_bp(pid_t child, uint64_t *list, uint64_t *data, int *next_free) {
@@ -33,19 +33,20 @@ void check_clear_bp(pid_t child, uint64_t *list, uint64_t *data, int *next_free)
     ptrace(PTRACE_GETREGS, child, 0, &temp_regs);
     for (int i = 0; i <= *next_free; i++) {
         if (list[i] == temp_regs.rip-1) {
-            printf("Resuming from breakpoint %d\n", i); 
+            printf("Resuming from breakpoint %d\n", i);
             ptrace(PTRACE_POKETEXT, child, list[i], data[i]);
             temp_regs.rip--;
             ptrace(PTRACE_SETREGS, child, 0, &temp_regs);
             (*next_free)--;
-        }   
-    }   
+        }
+    }
 }
 
 int get_input() {
 	char in[512];
+
 	printf("> ");
-	int err = scanf(" %s", in); // remove newline here?
+	int err = scanf(" %512s", in);
 	if (err < 0) {
 		perror("scanf");
 		return -1;

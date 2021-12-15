@@ -1,3 +1,5 @@
+#pragma once
+
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -15,8 +17,6 @@
 
 #define NUM_BREAKPOINTS 32
 #define TRAP_CODE 0xCC
-
-#pragma once
 
 enum {
 	DUMP_REGS,
@@ -36,4 +36,3 @@ int get_mem_break();
 void print_breakpoints(uint64_t *break_list);
 void check_clear_bp(pid_t child, uint64_t *list, uint64_t *data, int *next_free);
 
-extern const char *help_text;
